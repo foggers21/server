@@ -61,7 +61,7 @@ module.exports = app => {
     });
 
     //check login
-    app.get('/checkLogin',(req, res) => {
+    app.post('/checkLogin',(req, res) => {
         passport.authenticate('jwt', { session: false }, (err, decryptToken, jwtError) => {
             if(jwtError != void(0) || err != void(0)) {
                 res.send({auth: false});
