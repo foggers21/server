@@ -6,17 +6,17 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 
-function checkAuth(req, res, next){
-    passport.authenticate('jwt', { session: false }, (err, decryptToken, jwtError) => {
-        if(jwtError != void(0) || err != void(0)) {
-            res.send({auth: false});
-        }else{
-            res.send({auth: true });
-        };
-        req.user = decryptToken;
-        next();
-    })(req, res, next);
-}
+// function checkAuth(req, res, next){
+//     passport.authenticate('jwt', { session: false }, (err, decryptToken, jwtError) => {
+//         if(jwtError != void(0) || err != void(0)) {
+//             res.send({auth: false});
+//         }else{
+//             res.send({auth: true });
+//         };
+//         req.user = decryptToken;
+//         next();
+//     })(req, res, next);
+// }
 
 function createToken (body) {
     return jwt.sign(
@@ -71,8 +71,16 @@ module.exports = app => {
     });
 
     //check login
-    app.post('/checkLogin',checkAuth,(req, res) => {
-        
+    app.post('/checkLogin',(req, res) => {
+        passport.authenticate('jwt', { session: false }, (err, decryptToken, jwtError) => {
+            if(jwtError != void(0) || err != void(0)) {
+                res.send({auth: false,error: err || jwtError});
+            }else{
+                res.send({auth: true });
+            };
+            req.user = decryptToken;
+            
+        })(req, res);
     });
 
 
