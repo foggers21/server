@@ -10,9 +10,9 @@ function checkAuth(req, res, next){
     passport.authenticate('jwt', { session: false }, (err, decryptToken, jwtError) => {
         if(jwtError != void(0) || err != void(0)) {
             res.send({auth: false});
-        }else 
+        }else{
             res.send({auth: true });
-
+        };
         req.user = decryptToken;
         next();
     })(req, res);
@@ -28,7 +28,7 @@ function createToken (body) {
 
 module.exports = app => {
     //get all todos for user
-    app.get('/todos/:user',checkAuth,async (req, res) => {
+    app.get('/todos/:user',async (req, res) => {
         try{
             let data = await db.listTodos(req.params.user);
             res.send(data);
@@ -71,18 +71,9 @@ module.exports = app => {
     });
 
     //check login
-    // app.post('/checkLogin',(req, res) => {
-    //     passport.authenticate('jwt', { session: false }, (err, decryptToken, jwtError) => {
-    //         if(jwtError != void(0) || err != void(0)) {
-    //             res.send({auth: false});
-    //         }else 
-    //             res.send({auth: true });
-
-    //         req.user = decryptToken;
-            
-    //     })(req, res);
-
-    // });
+    app.post('/checkLogin',checkAuth,(req, res) => {
+        
+    });
 
 
     //login
