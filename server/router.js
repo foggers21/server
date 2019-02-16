@@ -102,7 +102,7 @@ module.exports = app => {
     app.post('/register', async (req, res) => {
         try{
             let user = await db.findUser(req.body);
-            if(user != void(0)) return res.status(400).send({message: "User already exist"});
+            if(user != void(0)) return res.status(401).send({message: "User already exist"});
 
             user = await db.createUser(req.body);
 
