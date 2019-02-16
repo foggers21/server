@@ -6,15 +6,7 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 
-// function checkAuth (req, res, next) {
-//     passport.authenticate('jwt', { session: false }, (err, decryptToken, jwtError) => {
-//         if(jwtError != void(0) || err != void(0)) {
-//             return res.send({ error: err || jwtError});
-//         }
-//         req.user = decryptToken;
-//         next();
-//     })(req, res, next);
-// }
+
 
 function createToken (body) {
     return jwt.sign(
