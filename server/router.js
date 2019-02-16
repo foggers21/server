@@ -15,7 +15,7 @@ function checkAuth(req, res, next){
         };
         req.user = decryptToken;
         next();
-    })(req, res);
+    })(req, res, next);
 }
 
 function createToken (body) {
