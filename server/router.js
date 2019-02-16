@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken');
 function createToken (body) {
     return jwt.sign(
         body,
-        config.jwt.secretOrKey,
+        config.jwtKey.secretOrKey,
         {expiresIn: config.expiresIn}
     );
 }
