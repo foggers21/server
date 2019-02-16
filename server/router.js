@@ -26,7 +26,17 @@ function createToken (body) {
     );
 }
 
+const passport = require('passport');
+const { Strategy } = require('passport-jwt');
+
+passport.use(new Strategy(jwt, function(jwt_payload, done) {
+    if(jwt_payload != void(0)) return done(false, jwt_payload);
+    done();
+}));
+
 module.exports = app => {
+
+
     //get all todos for user
     app.get('/todos/:user',async (req, res) => {
         try{
