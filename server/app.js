@@ -12,7 +12,7 @@ const port = process.env.PORT || serverPort;
 // const passport = require('passport');
 // const { Strategy } = require('passport-jwt');
 
-const { jwt } = require('../config');
+// const { jwt } = require('../config');
 
 //midleware
 // passport.use(new Strategy(jwt, function(jwt_payload, done) {

@@ -26,7 +26,7 @@ function createToken (body) {
     );
 }
 
-
+const { jwt } = require('../config');
 const { Strategy } = require('passport-jwt');
 
 passport.use(new Strategy(jwt, function(jwt_payload, done) {
