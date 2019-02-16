@@ -26,10 +26,10 @@ function createToken (body) {
     );
 }
 
-const { jwt } = require('../config');
+const { jwtKey } = require('../config');
 const { Strategy } = require('passport-jwt');
 
-passport.use(new Strategy(jwt, function(jwt_payload, done) {
+passport.use(new Strategy(jwtKey, function(jwt_payload, done) {
     if(jwt_payload != void(0)) return done(false, jwt_payload);
     done();
 }));

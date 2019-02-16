@@ -7,7 +7,7 @@ function ExtractJwt (req) {
 }
 
 module.exports = {
-    jwt: {
+    jwtKey: {
         jwtFromRequest: ExtractJwt,
         secretOrKey: 'TfbTq2NfLzqMcbVY9EpGQ2p'
     },
