@@ -25,7 +25,6 @@ passport.use(new Strategy(jwtKey, function(jwt_payload, done) {
 
 module.exports = app => {
 
-
     //get all todos for user
     app.get('/todos/:user',async (req, res) => {
         try{
@@ -63,14 +62,14 @@ module.exports = app => {
     //update todo
     app.patch('/todos/:id', async (req, res) => {
         try{
-           await db.updateTodo(req.params.id,req.body).then(data => res.send(data));
+           await db.updateTodo(req.params.id, req.body).then(data => res.send(data));
         }catch(e){
             console.error("error update: ", e);
         }
     });
 
     //check login
-    app.post('/checkLogin',(req, res) => {
+    app.post('/checkLogin',(req,res ) => {
         passport.authenticate('jwt', { session: false }, (err, decryptToken, jwtError) => {
             if(jwtError != void(0) || err != void(0)) {
                 res.send({auth: false});
@@ -92,7 +91,7 @@ module.exports = app => {
             const token = createToken({id: user._id, username: user.username});
 
             res.cookie('token', token, {
-                httpOnly: true
+                httpOnly: false
             });
 
             res.status(200).send("You are logged");
@@ -117,7 +116,7 @@ module.exports = app => {
             const token = createToken({id: user._id, username: user.username});
 
             res.cookie('token', token, {
-                httpOnly: true
+                httpOnly: false
             });
 
             res.status(200).send({message: "User created."});
