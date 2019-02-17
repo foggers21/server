@@ -9,6 +9,8 @@ const cookieParser = require('cookie-parser');
 const { serverPort } = require('../config.js');
 const port = process.env.PORT || serverPort;
 
+app.use(cookieParser());
+
 // const passport = require('passport');
 // const { Strategy } = require('passport-jwt');
 
@@ -28,7 +30,7 @@ mongoose.set('debug', true);
 
 app.use(morgan('tiny'));
 
-app.use(cookieParser());
+
 //end
 
 //datebase connection
