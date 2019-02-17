@@ -64,7 +64,8 @@ module.exports = app => {
     //update todo
     app.patch('/todos/:id', async (req, res) => {
         try{
-           await db.updateTodo(req.params.id, req.body).then(data => res.send(data));
+           let data = await db.updateTodo(req.params.id, req.body);
+           res.send(data);
         }catch(e){
             console.error("error update: ", e);
         }
