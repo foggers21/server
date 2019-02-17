@@ -25,6 +25,8 @@ passport.use(new Strategy(jwtKey, function(jwt_payload, done) {
 
 module.exports = app => {
 
+    
+
     //get all todos for user
     app.get('/todos/:user',async (req, res) => {
         try{
@@ -69,7 +71,7 @@ module.exports = app => {
     });
 
     //check login
-    app.post('/checkLogin',(req,res ) => {
+    app.post('/checkLogin',(req, res ) => {
         passport.authenticate('jwt', { session: false }, (err, decryptToken, jwtError) => {
             if(jwtError != void(0) || err != void(0)) {
                 res.send({auth: false});
@@ -79,6 +81,7 @@ module.exports = app => {
             req.user = decryptToken;
             
         })(req, res);
+        console.log(req.cookies);
     });
 
 
@@ -89,11 +92,11 @@ module.exports = app => {
         if(user != void(0) && bcrypt.compareSync(req.body.password, user.password)){
             
             const token = createToken({id: user._id, username: user.username});
-
+            
             res.cookie('token', token, {
                 httpOnly: false
             });
-
+            console.log(req.cookies);
             res.status(200).send("You are logged");
 
         } else
@@ -118,7 +121,7 @@ module.exports = app => {
             res.cookie('token', token, {
                 httpOnly: false
             });
-
+            console.log(req.cookies);
             res.status(200).send({message: "User created."});
 
         }catch(e){
@@ -129,6 +132,7 @@ module.exports = app => {
 
     //logout
     app.post('/logout', (req, res) => {
+        console.log(req.cookies);
         res.clearCookie('token');
         res.status(200).send({message: "Logout success."});
     });
