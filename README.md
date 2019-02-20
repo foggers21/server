@@ -1,4 +1,4 @@
-# server for todo-app
+# server for todo-app be express
 
 server is working on https://salty-oasis-70023.herokuapp.com/
 
