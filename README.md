@@ -1,9 +1,11 @@
-# server for todo-app be express
+# server for todo-app by express
 
-server is working on https://salty-oasis-70023.herokuapp.com/
+The same server by koa: https://github.com/foggers21/server-koa
 
-server getting request from 
+Server is working on https://salty-oasis-70023.herokuapp.com/
 
-authentication isn't working in browser: cookies doesn't set in browser
+Server getting request from 
+
+Authentication isn't working in browser: cookies doesn't set in browser
 
 Authentication is working in POSTMAN
