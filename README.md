@@ -1,4 +1,4 @@
-# server for todo-app by express with JWT authorization 
+# server for todo-app by express with JWT authorization by cookie
 
 Server is working on https://server-for-todo-by-express.herokuapp.com/ 
 
